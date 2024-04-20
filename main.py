@@ -4,7 +4,7 @@ import os
 import uvicorn
 from pathlib import Path
 from utils.logger import LoguruLogger
-
+from starlette.staticfiles import StaticFiles
 # 路由
 from routes.home import home_router
 
@@ -22,6 +22,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+# 将OpenAI docs代码接管到本地中
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.include_router(home_router)
 

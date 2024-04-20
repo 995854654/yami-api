@@ -37,7 +37,7 @@ class LoguruLogger(metaclass=SingletonMeta):
         log_config: dict = config.get("logger", {})
         log_path = log_config.get("path", "")
         file_path = log_path + "/" + log_config.get("filename", "")
-        logger_object = cls.get_logger(
+        logger_object = cls.config_logger(
             file_path,
             level=log_config.get("level"),
             retention=log_config.get("retention"),
@@ -50,7 +50,7 @@ class LoguruLogger(metaclass=SingletonMeta):
         return logger_object
 
     @classmethod
-    def get_logger(cls, filepath: Path, level: str, retention: str, rotation: str, formats: str,
+    def config_logger(cls, filepath: Path, level: str, retention: str, rotation: str, formats: str,
                    request_id: str = "unknown-service"):
         """
         :param filepath: 日志输出路径
@@ -86,3 +86,8 @@ class LoguruLogger(metaclass=SingletonMeta):
             logger.error("load logging config error!!")
         finally:
             return config
+
+
+    @classmethod
+    def get_logger(cls):
+        return cls._logger

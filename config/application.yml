@@ -1,0 +1,11 @@
+
+profile:
+  active: "dev"
+
+
+
+
+metastore:
+  type: "mysql"
+  connection_str: ${DB_CONNECTION_STRING}
+

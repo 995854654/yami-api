@@ -3,7 +3,7 @@
     "path": "/tmp/logs",
     "filename": "access.log",
     "level": "DEBUG",
-    "rotation": "10 days",
+    "rotation": "1 days",
     "retention": "1 months",
     "format": "<level>{level: <8}</level><green>{time:YYYY-MM-DD HH-mm-ss.SSS}</green> request id:{extra[request_id]} - <cyan>{name}</cyan><cyan>{function}</cyan><cyan>|</cyan><cyan>{line}</cyan> - <level>{message}</level>"
   }

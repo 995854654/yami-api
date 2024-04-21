@@ -65,8 +65,8 @@ class LoguruLogger(metaclass=SingletonMeta):
         # enqueue 加入消息队列，保证日志的完整性
         # backtrace 回溯
         logger.add(sys.stdout, enqueue=True, backtrace=True, level=level.upper(), format=formats)
-        logger.add(str(filepath), encoding="utf-8", rotation=rotation, retention=retention, enqueue=True,
-                   backtrace=True, level=level.upper(), format=formats)
+        # logger.add(str(filepath), encoding="utf-8", rotation=rotation, retention=retention, enqueue=True,
+        #            backtrace=True, level=level.upper(), format=formats)
         # 将fastAPI的日志添加到loguru中
         LOGGER_NAMES = ["uvicorn", "uvicorn.error", "fastapi", "uvicorn.asgi", "uvicorn.access"]
         logging.getLogger().handlers = [InterceptHandler(request_id=request_id)]

@@ -5,6 +5,6 @@
     "level": "DEBUG",
     "rotation": "1 days",
     "retention": "1 months",
-    "format": "<level>{level: <8}</level><green>{time:YYYY-MM-DD HH-mm-ss.SSS}</green> request id:{extra[request_id]} - <cyan>{name}</cyan><cyan>{function}</cyan><cyan>|</cyan><cyan>{line}</cyan> - <level>{message}</level>"
+    "format": "{time:YYYY-MM-DD HH-mm-ss.SSS} <level><yellow>{level: <5}</yellow></level> <green>{line}</green> --- [request id:{extra[request_id]}] <cyan>{name}</cyan><cyan>{function}</cyan> : <level>{message}</level>"
   }
 }

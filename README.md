@@ -22,7 +22,7 @@
 
 - [ ] infrastructure
     - [X] logging
-    - [ ] security - JWT
+    - [X] security - JWT
 - [ ] function requirement
 - [ ] non-function requirement
 - [ ] LLM

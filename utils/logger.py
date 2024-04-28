@@ -4,6 +4,7 @@ import json
 from loguru import logger
 from utils.common import SingletonMeta
 import sys
+from logging import Logger
 
 class InterceptHandler(logging.Handler):
     def __init__(self,request_id):
@@ -89,5 +90,6 @@ class LoguruLogger(metaclass=SingletonMeta):
 
 
     @classmethod
-    def get_logger(cls):
+    def get_logger(cls) -> Logger:
         return cls._logger
+

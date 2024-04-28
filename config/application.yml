@@ -3,6 +3,10 @@ profile:
   active: "dev"
 
 
+authentication:
+  # 30分钟超时
+  expire: 30
+  api_key: ${SECRET_KEY}
 
 
 metastore:

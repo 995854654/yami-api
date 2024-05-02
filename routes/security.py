@@ -22,7 +22,7 @@ def sign_up(user: UserSignUp, db: Session = Depends(get_db)) -> ResMsg:
     return answer
 
 
-@security_router.post("/sign_in")
+@security_router.post("/login_in")
 def login_for_access_token(db: Session = Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()) -> Token:
     logger = LoguruLogger.get_logger()
     token = get_sign_service(db).sign_in_by_user(

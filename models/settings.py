@@ -21,8 +21,6 @@ class MetaStoreType(str, Enum):
     SQLITE = "sqlite"
 
 
-
-
 class Setting:
     _settings: dict = {}
 
@@ -40,6 +38,11 @@ class Setting:
                 self._settings.get("metastore", {}).get("connection_str"),
                 pool_recycle=1500, pool_timeout=3600
             )
+        elif storage_type == MetaStoreType.SQLITE:
+            self.metastore = create_engine(
+                self._settings.get("metastore", {}).get("connection_str"),
+                connect_args={"check_same_thread": False}
+            )
 
     def _set_llm(self, llm_type: LLMType = None, llm_param: LLMConfiguration = None, llm_key: str = None):
 
@@ -51,7 +54,6 @@ class Setting:
                 openai_api_key=llm_key if llm_key else _llm.get("key"),
                 model_name=llm_param.llm_model_name if llm_param else _llm.get("model_name"),
             )
-
 
     def load(self, config_path: Optional[str]):
         config_path = str(config_path)

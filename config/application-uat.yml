@@ -1,3 +1,0 @@
-metastore:
-  type: "mssql"
-  connection_str: ${DB_CONNECTION_STRING}

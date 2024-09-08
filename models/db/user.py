@@ -3,6 +3,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.sql import func
 from pydantic import BaseModel
 
+
 class UserInfo(Base):
     __tablename__ = "user_info"
     id = Column(Integer, primary_key=True)
@@ -11,8 +12,6 @@ class UserInfo(Base):
     password = Column(String(255), comment="密码")
     create_time = Column(DateTime, server_default=func.now())
     update_time = Column(DateTime, server_default=func.now())
-
-
 
 
 class UserProfile(Base):
@@ -24,7 +23,6 @@ class UserProfile(Base):
     avatar_path = Column(String(255), comment="头像地址")
     create_time = Column(DateTime, server_default=func.now())
     update_time = Column(DateTime, server_default=func.now())
-
 
 
 class UserBase(BaseModel):

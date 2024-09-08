@@ -1,6 +1,12 @@
 from pydantic import BaseModel, Field
+from enum import Enum
 
 common_description = "One of the large language model parameter"
+
+
+class LLMType(str, Enum):
+    MOONSHOT = "moonshot"
+    GPT4TURBO = "gpt-4-turbo"
 
 
 class LLMConfiguration(BaseModel):
@@ -12,6 +18,7 @@ class LLMConfiguration(BaseModel):
     seed: 随机种子，需要查看模型是否支持该参数
     """
     llm_model_name: str = Field(..., description="One of the large language model name")
+    endpoint: str = Field(..., description="Model name endpoint")
     temperature: int = Field(default=0, description=common_description)
     top_p: int = Field(default=1, description=common_description)
     frequency_penalty: int = Field(default=0, description=common_description)

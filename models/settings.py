@@ -10,7 +10,7 @@ from sqlalchemy import create_engine, Engine
 import pymysql
 
 # langchain
-from models.configuration import LLMConfiguration, LLMType
+from models.llm import LLMConfiguration, LLMType
 from langchain_openai import ChatOpenAI
 
 pymysql.install_as_MySQLdb()

@@ -93,3 +93,14 @@ CREATE TABLE IF NOT EXISTS `resource_info` (
     create_time DATETIME DEFAULT CURRENT_TIMESTAMP
 ) default charset=utf8 COMMENT '资源信息表';
 
+-- chat history
+DROP TABLE IF EXISTS `chat_history`;
+CREATE TABLE IF NOT EXISTS `chat_history` (
+    `history_id` VARCHAR(100) not null PRIMARY KEY,
+    user_id VARCHAR(100) NOT NULL COMMENT '对应用户的ID',
+    history_name VARCHAR(50),
+    `description` VARCHAR(255),
+    messages TEXT,
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) default charset=utf8 COMMENT '聊天历史表';

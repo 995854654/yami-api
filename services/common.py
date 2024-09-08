@@ -37,6 +37,7 @@ def get_db():
         raise
     finally:
         session.close()
+        logger.info("db close")
 
 
 def verify_user_request(token: str = Depends(oauth2_scheme)) -> TokenData:

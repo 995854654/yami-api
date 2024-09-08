@@ -7,7 +7,7 @@ from models.custom_request import QARequest
 from models.common import ChatDirection, ChatMessage
 from typing import List
 from sqlalchemy.orm import Session
-from models.db.chatbot import ChatHistory
+from models.db.chatbot import ChatHistory, ChatHistoryBase
 from models.custom_response import ResMsg
 import json
 from uuid import uuid4
@@ -52,7 +52,7 @@ class ChatService:
     def update_chat_history(self, db: Session, history_id, history_list: List[ChatMessage], user_id):
         self.logger.info("save history")
         # serialize
-        chat_list = [item.json() for item in history_list]
+        chat_list = [item.model_dump() for item in history_list]
         history = db.query(ChatHistory).filter(ChatHistory.history_id == history_id).first()
         if history:
             history.messages = json.dumps(chat_list, ensure_ascii=False)
@@ -66,3 +66,8 @@ class ChatService:
             ))
         db.commit()
         return ResMsg()
+
+    @staticmethod
+    def get_chat_history(db: Session, user_id: str):
+        historys = db.query(ChatHistory).filter(ChatHistory.user_id == user_id).all()
+        return ResMsg(data=[ChatHistoryBase.model_validate(history) for history in historys])
